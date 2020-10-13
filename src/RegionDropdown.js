@@ -8,7 +8,7 @@ const [value, setValue] = useState("")
 const [region, setRegion] = useState([])
     
     const handleSelect =(e) => {
-        console.log(setValue(e))
+        console.log(setValue(e.target.value))
     }
    
     
