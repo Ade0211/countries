@@ -1,21 +1,28 @@
 import React, {useState, useEffect} from "react"
-import Country from "./Country"
 import './App.css';
 
 
-const RegionDropdown = () => {
-const [value, setValue] = useState("")
-const [region, setRegion] = useState([])
-    
+const RegionDropdown = ({countries, setCountries, Country}) => {
+const [value, setValue] = useState("All")
+// const [region, setRegion] = useState([]) 
     const handleSelect =(e) => {
-        console.log(e.target.value)
+        console.log("target",e.target.value)
         setValue(e.target.value)
+        setCountries(Country)
+       
     }
-   
-    
+
+   useEffect(()=>{
+    const filteredCountries = countries.filter((country) => {
+      return country.region.toLowerCase() === value.toLowerCase();
+      
+     })
+     value === "All"? setCountries(Country):setCountries(filteredCountries)
+   }, [value])
+     
     return (
         <div>
-      <select value={value} onChange={handleSelect}>
+      <select onChange={handleSelect}>
         <option value='All'>All</option>
        <option value='Europe'>Europe</option>
         <option value='Asia'>Asia</option>

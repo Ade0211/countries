@@ -1,13 +1,12 @@
-import React, {useState} from "react"
-import Country from "./Country.js"
-import SearchBox from "./SearchBox.js"
+import React from "react"
 
-const CountryList =({term}) => {
+const CountryList =({countries}) => {
+  console.log(countries)
     return (
         <div>
 
 <div className="describe">
-        {Country.filter(SearchBox(term)).map((item, key) => (
+        {countries.map((item, key) => (
           <div className ="Country" key={key}>
             <h2>{item.name}</h2>
              <img src = {item.flag} alt = "country-flag"/>

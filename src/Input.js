@@ -2,17 +2,21 @@ import React, {useState} from "react"
 
 
 
-const Input =({setTerm, term}) => {
 
+const Input =({setCountries, countries, Country}) => {
+const [inputValue, setInputValue] = useState("")
     const searchHandler =(e) => {
-        return setTerm(e.target.value)
+        setInputValue(e.target.value)
+        const filteredCountryList = Country.filter((country) => {
+        return country.name.toLowerCase().includes(inputValue.toLowerCase())})
+        setCountries(filteredCountryList)
           }
 
     return(
  <form>
       <input type="text" 
      onChange={searchHandler}
-    value ={term}
+    value ={inputValue}
 />
              
 </form>
