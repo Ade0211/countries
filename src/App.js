@@ -6,7 +6,14 @@ import './App.css';
 import CountryList from './CountryList.js';
 
 const App = () => {
-  const [countries, setCountries] = useState(Country) 
+  const [countries, setCountries] = useState([])
+  useEffect(()=>{
+    fetch(`https://restcountries.eu/rest/v2/all`)
+    .then((response) =>
+    response.json())
+    .then((data) =>
+    setCountries(data))
+  }) 
  
 return (
   <div>
