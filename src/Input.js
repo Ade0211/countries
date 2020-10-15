@@ -1,25 +1,16 @@
-import React, {useState} from "react"
+import React, { useState } from "react";
 
+const Input = ({ filteredCountries }) => {
+  const [inputValue, setInputValue] = useState("");
+  const searchHandler = (event) => {
+    setInputValue(event.target.value);
+    filteredCountries(event.target.value, true);
+  };
 
-
-
-const Input =({setCountries, countries, Country}) => {
-const [inputValue, setInputValue] = useState("")
-    const searchHandler =(e) => {
-        setInputValue(e.target.value)
-        const filteredCountryList = Country.filter((country) => {
-        return country.name.toLowerCase().includes(inputValue.toLowerCase())})
-        setCountries(filteredCountryList)
-          }
-
-    return(
- <form>
-      <input type="text" 
-     onChange={searchHandler}
-    value ={inputValue}
-/>
-             
-</form>
-    )
-}
-export default Input
+  return (
+    <form>
+      <input type="text" onChange={searchHandler} value={inputValue} />
+    </form>
+  );
+};
+export default Input;
