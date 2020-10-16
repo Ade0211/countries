@@ -3,7 +3,6 @@ import React from "react";
 const CountryList = ({ countries, setHomePage, setCountryInfo }) => {
   const handleClick = (country) => {
     setHomePage(false);
-    // setCountryInfo(country);
     setCountryInfo(country);
   };
   return (

@@ -5,8 +5,7 @@ import Input from "./Input.js";
 import "./App.css";
 import CountryList from "./CountryList.js";
 import CountryInformationDisplay from "./CountryInfomationDisplay.js";
-
-// import CountryDetails from "./CountryDetails.js";
+import Header from "./Header.js";
 
 const App = () => {
   const [countries, setCountries] = useState([]);
@@ -14,7 +13,7 @@ const App = () => {
   const [region, setRegion] = useState("");
   const [homePage, setHomePage] = useState(true);
   const [countryInfo, setCountryInfo] = useState({});
-  const [theme, setTheme] = useState("light")
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     fetch(`https://restcountries.eu/rest/v2/all`)
@@ -46,18 +45,18 @@ const App = () => {
     setCountries(CountryFilter);
     console.log(CountryFilter);
   };
-const changeTheme =() => {
-  if(theme === "light")
-  setTheme("dark")
-  else 
-  setTheme("light")
-}
+  const changeTheme = () => {
+    if (theme === "light") setTheme("dark");
+    else setTheme("light");
+  };
   return (
     <div className={theme}>
       {homePage ? (
         <>
+          <div>
+            <Header />
+          </div>
           <div className="header">
-
             <Input
               setCountries={setCountries}
               countries={countries}
@@ -67,7 +66,7 @@ const changeTheme =() => {
             />
 
             <RegionDropdown filteredCountries={filteredCountries} />
-            <button onClick={changeTheme} >Change Theme</button>
+            <button onClick={changeTheme}>Change Theme</button>
           </div>
           <CountryList
             countries={countries}
@@ -75,12 +74,14 @@ const changeTheme =() => {
             setCountryInfo={setCountryInfo}
           />
         </>
-      ) : ( <><button onClick={changeTheme} >Change Theme</button>
-        <CountryInformationDisplay
-          countryInfo={countryInfo}
-          countries={countries}
-         setHomePage={setHomePage}
-        />
+      ) : (
+        <>
+          <button onClick={changeTheme}>Change Theme</button>
+          <CountryInformationDisplay
+            countryInfo={countryInfo}
+            countries={countries}
+            setHomePage={setHomePage}
+          />
         </>
       )}
     </div>
