@@ -1,8 +1,6 @@
-import React from "react"
+import React from "react";
 
-const CountryFlag =({countryInfo}) => {
-return (
-    <img src = {countryInfo.flag} alt = ""  />
-)
-}
-export default CountryFlag
+const CountryFlag = ({ fullCountry }) => {
+  return <img className="displayFlag" src={fullCountry.flag} alt="" />;
+};
+export default CountryFlag;

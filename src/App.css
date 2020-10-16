@@ -9,11 +9,19 @@
   pointer-events: none;
 }
 
-.Header{
+.header{
   display: flex;
   justify-content: center;
 }
+.light{
+  background-color:white;
+  color: black;
+}
 
+.dark{
+  background-color: grey;
+  color: beige;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -48,10 +56,15 @@ img{
 p{
   margin: 3px;
 }
-/* .Country {
-  margin: 5px 20px;
-  color: white;
+/* .CountryDetails {
+  display: flex;
+  margin: 0 auto;
 } */
+.CountryInformationDisplay {
+  display: block;
+  margin: 0 auto;
+  width: 30rem;
+}
 .describe{
  display: flex;
  flex-wrap: wrap;

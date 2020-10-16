@@ -6,12 +6,15 @@ import "./App.css";
 import CountryList from "./CountryList.js";
 import CountryInformationDisplay from "./CountryInfomationDisplay.js";
 
+// import CountryDetails from "./CountryDetails.js";
+
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [searchedCountry, setSearchedCountry] = useState("");
   const [region, setRegion] = useState("");
-  const [homePage, setHomePage] = useState (true);
-  const[countryInfo, setCountryInfo]  = useState({})
+  const [homePage, setHomePage] = useState(true);
+  const [countryInfo, setCountryInfo] = useState({});
+  const [theme, setTheme] = useState("light")
 
   useEffect(() => {
     fetch(`https://restcountries.eu/rest/v2/all`)
@@ -43,25 +46,43 @@ const App = () => {
     setCountries(CountryFilter);
     console.log(CountryFilter);
   };
-
+const changeTheme =() => {
+  if(theme === "light")
+  setTheme("dark")
+  else 
+  setTheme("light")
+}
   return (
-    <div>
-    {homePage? <><div className="Header">
-        <Input
-          setCountries={setCountries}
-          countries={countries}
-          Country={Country}
-          setSearchedCountry={setSearchedCountry}
-          filteredCountries={filteredCountries}
-        />
+    <div className={theme}>
+      {homePage ? (
+        <>
+          <div className="header">
 
-        <RegionDropdown
-          filteredCountries={filteredCountries}
+            <Input
+              setCountries={setCountries}
+              countries={countries}
+              Country={Country}
+              setSearchedCountry={setSearchedCountry}
+              filteredCountries={filteredCountries}
+            />
+
+            <RegionDropdown filteredCountries={filteredCountries} />
+            <button onClick={changeTheme} >Change Theme</button>
+          </div>
+          <CountryList
+            countries={countries}
+            setHomePage={setHomePage}
+            setCountryInfo={setCountryInfo}
+          />
+        </>
+      ) : ( <><button onClick={changeTheme} >Change Theme</button>
+        <CountryInformationDisplay
+          countryInfo={countryInfo}
+          countries={countries}
+         setHomePage={setHomePage}
         />
-      </div>
-      <CountryList countries={countries} setHomePage={setHomePage} setCountryInfo={setCountryInfo}/>
-     
-  </>:<CountryInformationDisplay   countryInfo={countryInfo}/>}
+        </>
+      )}
     </div>
   );
 };
